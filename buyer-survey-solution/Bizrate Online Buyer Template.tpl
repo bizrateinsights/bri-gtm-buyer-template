@@ -1,8 +1,16 @@
-﻿___INFO___
+﻿___TERMS_OF_SERVICE___
+
+By creating or modifying this file you agree to Google Tag Manager's Community
+Template Gallery Developer Terms of Service available at
+https://developers.google.com/tag-manager/gallery-tos (or such other URL as
+Google may provide), as modified from time to time.
+
+
+___INFO___
 
 {
   "displayName": "Bizrate Online Buyer Template",
-  "categories": ["Survey"],
+  "categories": ["SURVEY"],
   "description": "Template to use while waiting for the Vendor Template to be updated.",
   "securityGroups": [],
   "id": "cvt_temp_public_id",
@@ -456,6 +464,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 3/30/2021, 5:28:37 PM
+Created on 3/31/2021, 2:30:36 PM
 
 
