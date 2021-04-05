@@ -1,4 +1,4 @@
-# Bizrate Insights GTM community gallery template: Buyer Survey Solution
+# Bizrate Insights GTM community gallery template: Online Buyer Survey Solution
 This repository holds the BRI Google Tag Manager custom template for rendering Point of Sale invitations for merchants.
 
 # Instructions

@@ -9,9 +9,9 @@ Google may provide), as modified from time to time.
 ___INFO___
 
 {
-  "displayName": "Bizrate Online Buyer Template",
+  "displayName": "Bizrate Insights Online Buyer Solution",
   "categories": ["SURVEY"],
-  "description": "Template to use while waiting for the Vendor Template to be updated.",
+  "description": "Online buyer solution template for vendors.",
   "securityGroups": [],
   "id": "cvt_temp_public_id",
   "type": "TAG",
@@ -472,6 +472,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 4/5/2021, 10:52:21 AM
+Created on 4/5/2021, 11:31:28 AM
 
 
