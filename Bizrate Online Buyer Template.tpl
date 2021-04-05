@@ -10,6 +10,7 @@ ___INFO___
 
 {
   "displayName": "Bizrate Online Buyer Template",
+  "categories": ["SURVEY"],
   "description": "Template to use while waiting for the Vendor Template to be updated.",
   "securityGroups": [],
   "id": "cvt_temp_public_id",

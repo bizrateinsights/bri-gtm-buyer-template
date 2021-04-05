@@ -1,8 +1,10 @@
 homepage: "https://bizrateinsights.com/"
 documentation: "https://bizrateinsights.com/wp-content/uploads/2019/11/Online-Buyer-Code-GTM.pdf"
 versions:
+  # Latest version
   - sha: d69ec31fcbce1dbcb19bc710a6c8e012387c2170
     changeNotes: Finalizes metadata for release.
+  # Older versions
   - sha: 7293301e3a7b4b76ff856489ea7e3ed36f46ee01
     changeNotes: Restructures repo and modifies README
   - sha: 787cf4e2de0a41ed6c0b30bdd585822a410fccb8
