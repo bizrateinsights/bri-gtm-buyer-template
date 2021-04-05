@@ -2,14 +2,6 @@ homepage: "https://bizrateinsights.com/"
 documentation: "https://bizrateinsights.com/wp-content/uploads/2019/11/Online-Buyer-Code-GTM.pdf"
 versions:
   # Latest version
-  - sha: d69ec31fcbce1dbcb19bc710a6c8e012387c2170
-    changeNotes: Finalizes metadata for release.
+  - sha: a4bb47b0f148403f8026bd72877bf0d319ecee0c
+    changeNotes: Initial release.
   # Older versions
-  - sha: 7293301e3a7b4b76ff856489ea7e3ed36f46ee01
-    changeNotes: Restructures repo and modifies README
-  - sha: 787cf4e2de0a41ed6c0b30bdd585822a410fccb8
-    changeNotes: Adds terms of service and metadata file.
-  - sha: a5cc346ea76c0acbfde1522b631d33ae48972701
-    changeNotes: Adds BRI Buyer template.
-  - sha: 78182dd2beb4dca54ba3bf46917b9b6ba77285f6
-    changeNotes: Initial commit
