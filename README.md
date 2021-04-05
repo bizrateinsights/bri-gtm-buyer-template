@@ -1,9 +1,5 @@
-# Bizrate Insights GTM community gallery templates
-In this repository are a collection of BRI Google Tag Manager custom templates. 
-
-# Summary List of Templates
-### Buyer Survey Solution
-This template is used to render POS invitations.
+# Bizrate Insights GTM community gallery template: Buyer Survey Solution
+This repository holds the BRI Google Tag Manager custom template for rendering Point of Sale invitations for merchants.
 
 # Instructions
 To import a template file into your Google Tag Manager container, follow these steps:
