@@ -10,7 +10,6 @@ ___INFO___
 
 {
   "displayName": "Bizrate Online Buyer Template",
-  "categories": ["SURVEY"],
   "description": "Template to use while waiting for the Vendor Template to be updated.",
   "securityGroups": [],
   "id": "cvt_temp_public_id",
@@ -63,6 +62,14 @@ ___TEMPLATE_PARAMETERS___
     "displayName": "Order ID",
     "simpleValueType": true,
     "canBeEmptyString": true
+  },
+  {
+    "type": "TEXT",
+    "name": "storeId",
+    "displayName": "Store ID",
+    "simpleValueType": true,
+    "canBeEmptyString": true,
+    "help": "This field is not to be confused with merchant ID (mid). Please refer to documentation for more info."
   },
   {
     "type": "GROUP",
@@ -149,7 +156,7 @@ ___TEMPLATE_PARAMETERS___
         "displayName": "Coupon Applied",
         "simpleValueType": true,
         "canBeEmptyString": true,
-        "valueHint": "True, false, or leave empty"
+        "help": "This field accepts boolean values or empty strings only."
       }
     ]
   },
@@ -209,13 +216,6 @@ ___TEMPLATE_PARAMETERS___
         "displayName": "Custom Value 2",
         "simpleValueType": true,
         "canBeEmptyString": true
-      },
-      {
-        "type": "TEXT",
-        "name": "customVal3",
-        "displayName": "Custom Value 3",
-        "simpleValueType": true,
-        "canBeEmptyString": true
       }
     ]
   }
@@ -224,30 +224,37 @@ ___TEMPLATE_PARAMETERS___
 
 ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 
-var log = require('logToConsole');
-var injectScript = require('injectScript');
-var setInWindow = require('setInWindow');
+let log = require('logToConsole');
+let injectScript = require('injectScript');
+let setInWindow = require('setInWindow');
 const queryPermission = require('queryPermission');
 
-var _cnx = _cnx || [];
+let _cnx = [];
 const initScriptUrl = 'https://insights.bizrate.com/js/init.js';
 
-_cnx.push(['mid', data.mid]); 
-_cnx.push(['surveyType', data.surveyType]);
-_cnx.push(['orderId', data.orderId]); 
-_cnx.push(['customerId', data.emailAddress]); 
-_cnx.push(['zip', data.zip]); 
-_cnx.push(['webAnalyticsId', data.webAnalyticsId]);
-_cnx.push(['gtin', data.gtin]); 
-_cnx.push(['referrerPage', data.referrerPage]); 
-_cnx.push(['referrerUrl', data.referrerUrl]); 
-_cnx.push(['couponApplied', data.couponApplied]);
-_cnx.push(['pageId', data.pageId]); 
-_cnx.push(['segment', data.segment]);
+for(const key in data) {
+  if(!data[key]) {
+    data[key] = ''; 
+  }
+}
+
+_cnx.push(['mid', data.mid.toString()]); 
+_cnx.push(['surveyType', data.surveyType.toString()]);
+_cnx.push(['orderId', data.orderId.toString()]); 
+_cnx.push(['storeId', data.storeId.toString()]);
+_cnx.push(['customerId', data.customerId.toString()]); 
+_cnx.push(['emailAddress', data.emailAddress.toString()]);
+_cnx.push(['zip', data.zip.toString()]); 
+_cnx.push(['webAnalyticsId', data.webAnalyticsId.toString()]);
+_cnx.push(['gtin', data.gtin.toString()]); 
+_cnx.push(['referrerPage', data.referrerPage.toString()]); 
+_cnx.push(['referrerUrl', data.referrerUrl.toString()]); 
+_cnx.push(['couponApplied', data.couponApplied.toString()]);
+_cnx.push(['pageId', data.pageId.toString()]); 
+_cnx.push(['segment', data.segment.toString()]);
 _cnx.push(['cart', data.cart]); 
-_cnx.push(['customVal1', data.customVal1]);
-_cnx.push(['customVal2', data.customVal2]); 
-_cnx.push(['customVal3', data.customVal3]); 
+_cnx.push(['customValue1', data.customVal1.toString()]);
+_cnx.push(['customValue2', data.customVal2.toString()]); 
 
 setInWindow('_cnx', _cnx, true);
 
@@ -464,6 +471,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 3/31/2021, 2:30:36 PM
+Created on 4/5/2021, 10:52:21 AM
 
 
