@@ -188,7 +188,7 @@ ___TEMPLATE_PARAMETERS___
         "name": "spa",
         "checkboxText": "Single Page Application",
         "simpleValueType": true,
-        "help": "Check this box if your website is a single-page application (e.g., it uses a framework like React, Angular, or Vue.js). If you\u0027re not sure, leave this unchecked."
+        "help": "Check this box if your website is a single-page application (i.e., it uses a framework like React, Angular, or Vue.js). If you\u0027re not sure, leave this unchecked."
       }
     ]
   },
