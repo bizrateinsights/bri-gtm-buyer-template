@@ -10,15 +10,17 @@ ___INFO___
 
 {
   "displayName": "Bizrate Insights Online Buyer Solution",
-  "categories": ["SURVEY"],
+  "categories": [
+    "SURVEY"
+  ],
   "description": "Online buyer solution template for vendors.",
   "securityGroups": [],
   "id": "cvt_temp_public_id",
   "type": "TAG",
   "version": 1,
   "brand": {
-    "displayName": "",
-    "id": "brand_dummy"
+    "displayName": "bizrateinsights",
+    "id": "github.com_bizrateinsights"
   },
   "containerContexts": [
     "WEB"
@@ -180,6 +182,13 @@ ___TEMPLATE_PARAMETERS___
         "displayName": "Segment",
         "simpleValueType": true,
         "canBeEmptyString": true
+      },
+      {
+        "type": "CHECKBOX",
+        "name": "spa",
+        "checkboxText": "Single Page Application",
+        "simpleValueType": true,
+        "help": "Check this box if your website is a single-page application (e.g., it uses a framework like React, Angular, or Vue.js). If you\u0027re not sure, leave this unchecked."
       }
     ]
   },
@@ -253,9 +262,11 @@ _cnx.push(['referrerUrl', data.referrerUrl.toString()]);
 _cnx.push(['couponApplied', data.couponApplied.toString()]);
 _cnx.push(['pageId', data.pageId.toString()]); 
 _cnx.push(['segment', data.segment.toString()]);
-_cnx.push(['cart', data.cart]); 
+_cnx.push(['spa', data.spa]);
+_cnx.push(['src', 'GTM']);
+_cnx.push(['cart', data.cart]);
 _cnx.push(['customValue1', data.customVal1.toString()]);
-_cnx.push(['customValue2', data.customVal2.toString()]); 
+_cnx.push(['customValue2', data.customVal2.toString()]);
 
 setInWindow('_cnx', _cnx, true);
 
@@ -269,7 +280,9 @@ const onFailure = () => {
   data.gtmOnFailure();
 };
 
-injectScript(initScriptUrl, onSuccess, onFailure, 'bizrate');
+let cacheToken = data.spa ? null : 'bizrate';
+
+injectScript(initScriptUrl, onSuccess, onFailure, cacheToken);
 
 
 ___WEB_PERMISSIONS___
