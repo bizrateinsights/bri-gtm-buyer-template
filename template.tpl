@@ -280,7 +280,7 @@ const onFailure = () => {
   data.gtmOnFailure();
 };
 
-let cacheToken = data.spa ? null : 'bizrate';
+const cacheToken = data.spa ? null : 'bizrate';
 
 injectScript(initScriptUrl, onSuccess, onFailure, cacheToken);
 
