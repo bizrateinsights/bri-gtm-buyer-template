@@ -9,11 +9,11 @@ Google may provide), as modified from time to time.
 ___INFO___
 
 {
-  "displayName": "Bizrate Insights Online Buyer Solution",
+  "displayName": "Bizrate Insights Survey Solution",
   "categories": [
     "SURVEY"
   ],
-  "description": "Online buyer solution template for vendors.",
+  "description": "Online survey solution template for vendors.",
   "securityGroups": [],
   "id": "cvt_temp_public_id",
   "type": "TAG",
@@ -64,7 +64,14 @@ ___TEMPLATE_PARAMETERS___
     "name": "orderId",
     "displayName": "Order ID",
     "simpleValueType": true,
-    "canBeEmptyString": true
+    "canBeEmptyString": true,
+    "enablingConditions": [
+      {
+        "paramName": "surveyType",
+        "paramValue": "pos",
+        "type": "EQUALS"
+      }
+    ]
   },
   {
     "type": "TEXT",
@@ -73,6 +80,13 @@ ___TEMPLATE_PARAMETERS___
     "simpleValueType": true,
     "canBeEmptyString": true,
     "help": "This field is not to be confused with merchant ID (mid). Please refer to documentation for more info."
+  },
+  {
+    "type": "CHECKBOX",
+    "name": "spa",
+    "checkboxText": "Single Page Application",
+    "simpleValueType": true,
+    "help": "Check this box if your website is a single-page application (i.e., it uses a framework like React, Angular, or Vue.js). If you\u0027re not sure, leave this unchecked."
   },
   {
     "type": "GROUP",
@@ -105,21 +119,6 @@ ___TEMPLATE_PARAMETERS___
         "type": "TEXT",
         "name": "emailAddress",
         "displayName": "Email Address",
-        "simpleValueType": true,
-        "canBeEmptyString": true
-      }
-    ]
-  },
-  {
-    "type": "GROUP",
-    "name": "productIdentification",
-    "displayName": "Product Identification",
-    "groupStyle": "ZIPPY_OPEN",
-    "subParams": [
-      {
-        "type": "TEXT",
-        "name": "gtin",
-        "displayName": "UPC/EAN",
         "simpleValueType": true,
         "canBeEmptyString": true
       }
@@ -184,26 +183,123 @@ ___TEMPLATE_PARAMETERS___
         "canBeEmptyString": true
       },
       {
-        "type": "CHECKBOX",
-        "name": "spa",
-        "checkboxText": "Single Page Application",
+        "type": "SELECT",
+        "name": "pageType",
+        "displayName": "Page Type",
+        "macrosInSelect": false,
+        "selectItems": [
+          {
+            "value": "productDetail",
+            "displayValue": "Product Detail"
+          },
+          {
+            "value": "cart",
+            "displayValue": "Cart"
+          },
+          {
+            "value": "checkout",
+            "displayValue": "Checkout"
+          }
+        ],
         "simpleValueType": true,
-        "help": "Check this box if your website is a single-page application (i.e., it uses a framework like React, Angular, or Vue.js). If you\u0027re not sure, leave this unchecked."
-      }
-    ]
-  },
-  {
-    "type": "GROUP",
-    "name": "shoppingCartProducts",
-    "displayName": "Shopping Cart Products",
-    "groupStyle": "ZIPPY_OPEN",
-    "subParams": [
+        "help": "Choose the correct classification for your site\u0027s page. This will help us to collect certain information based on the page type chosen. If the page does not classify as one of the options, leave this field blank.",
+        "enablingConditions": [
+          {
+            "paramName": "surveyType",
+            "paramValue": "multi",
+            "type": "EQUALS"
+          }
+        ],
+        "notSetText": "",
+        "defaultValue": ""
+      },
       {
-        "type": "TEXT",
-        "name": "cart",
-        "displayName": "Cart",
-        "simpleValueType": true,
-        "canBeEmptyString": true
+        "type": "GROUP",
+        "name": "productDetails",
+        "displayName": "Product Details",
+        "groupStyle": "NO_ZIPPY",
+        "subParams": [
+          {
+            "type": "TEXT",
+            "name": "productId",
+            "displayName": "Product ID",
+            "simpleValueType": true,
+            "canBeEmptyString": true
+          },
+          {
+            "type": "TEXT",
+            "name": "sellingPrice",
+            "displayName": "Current Selling Price",
+            "simpleValueType": true,
+            "canBeEmptyString": true
+          },
+          {
+            "type": "TEXT",
+            "name": "originalPrice",
+            "displayName": "Original Price",
+            "simpleValueType": true,
+            "canBeEmptyString": true
+          },
+          {
+            "type": "TEXT",
+            "name": "productTitle",
+            "displayName": "Title",
+            "simpleValueType": true,
+            "canBeEmptyString": true
+          },
+          {
+            "type": "TEXT",
+            "name": "imageUrl",
+            "displayName": "Image URL",
+            "simpleValueType": true,
+            "canBeEmptyString": true
+          },
+          {
+            "type": "TEXT",
+            "name": "gtin",
+            "displayName": "UPC/EAN",
+            "simpleValueType": true,
+            "canBeEmptyString": true
+          }
+        ],
+        "enablingConditions": [
+          {
+            "paramName": "pageType",
+            "paramValue": "productDetail",
+            "type": "EQUALS"
+          }
+        ]
+      },
+      {
+        "type": "GROUP",
+        "name": "cartDetails",
+        "displayName": "Shopping Cart Details",
+        "groupStyle": "NO_ZIPPY",
+        "subParams": [
+          {
+            "type": "TEXT",
+            "name": "cart",
+            "displayName": "Cart Products",
+            "simpleValueType": true,
+            "help": "A json array of objects that represents the customer\u0027s cart. ex: products \u003d [{\u0027id\u0027:\u0027sku\u0027, \u0027price\u0027:\u00279.99\u0027,\u0027originalPrice\u0027:\u00279.99\u0027,\u0027quantity\u0027:\u00271\u0027,\u0027imageUrl\u0027:\u0027http://mysite.com/images/product123.jpg\u0027,\u0027title\u0027:\u0027Example Product Title\u0027}]",
+            "canBeEmptyString": true
+          },
+          {
+            "type": "TEXT",
+            "name": "cartTotal",
+            "displayName": "Cart Total",
+            "simpleValueType": true,
+            "help": "ex: 100.00",
+            "canBeEmptyString": true
+          }
+        ],
+        "enablingConditions": [
+          {
+            "paramName": "pageType",
+            "paramValue": "cart",
+            "type": "EQUALS"
+          }
+        ]
       }
     ]
   },
@@ -260,6 +356,13 @@ _cnx.push(['gtin', data.gtin.toString()]);
 _cnx.push(['referrerPage', data.referrerPage.toString()]); 
 _cnx.push(['referrerUrl', data.referrerUrl.toString()]); 
 _cnx.push(['couponApplied', data.couponApplied.toString()]);
+_cnx.push(['product', {
+  id: data.productId.toString(),
+  price: data.price.toString(),
+  originalPrice: data.originalPrice.toString(),
+  title: data.productTitle.toString(),
+  imageUrl: data.imageUrl.toString(),
+}]);
 _cnx.push(['pageId', data.pageId.toString()]); 
 _cnx.push(['segment', data.segment.toString()]);
 _cnx.push(['spa', data.spa]);
