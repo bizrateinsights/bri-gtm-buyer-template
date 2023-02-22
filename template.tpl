@@ -57,7 +57,12 @@ ___TEMPLATE_PARAMETERS___
         "displayValue": "Site Abandonment"
       }
     ],
-    "simpleValueType": true
+    "simpleValueType": true,
+    "valueValidators": [
+      {
+        "type": "NON_EMPTY"
+      }
+    ]
   },
   {
     "type": "TEXT",
@@ -345,31 +350,41 @@ for(const key in data) {
 }
 
 _cnx.push(['mid', data.mid.toString()]); 
-_cnx.push(['surveyType', data.surveyType.toString()]);
-_cnx.push(['orderId', data.orderId.toString()]); 
+_cnx.push(['surveyType', data.surveyType.toString()]); 
 _cnx.push(['storeId', data.storeId.toString()]);
 _cnx.push(['customerId', data.customerId.toString()]); 
 _cnx.push(['emailAddress', data.emailAddress.toString()]);
 _cnx.push(['zip', data.zip.toString()]); 
 _cnx.push(['webAnalyticsId', data.webAnalyticsId.toString()]);
-_cnx.push(['gtin', data.gtin.toString()]); 
 _cnx.push(['referrerPage', data.referrerPage.toString()]); 
 _cnx.push(['referrerUrl', data.referrerUrl.toString()]); 
 _cnx.push(['couponApplied', data.couponApplied.toString()]);
-_cnx.push(['product', {
-  id: data.productId.toString(),
-  price: data.price.toString(),
-  originalPrice: data.originalPrice.toString(),
-  title: data.productTitle.toString(),
-  imageUrl: data.imageUrl.toString(),
-}]);
 _cnx.push(['pageId', data.pageId.toString()]); 
 _cnx.push(['segment', data.segment.toString()]);
 _cnx.push(['spa', data.spa]);
 _cnx.push(['src', 'GTM']);
-_cnx.push(['cart', data.cart]);
 _cnx.push(['customValue1', data.customVal1.toString()]);
 _cnx.push(['customValue2', data.customVal2.toString()]);
+
+const pageType = data.pageType;
+
+if (pageType === 'productDetail') {
+   _cnx.push(['product', {
+    id: data.productId.toString(),
+    price: data.sellingPrice.toString(),
+    originalPrice: data.originalPrice.toString(),
+    title: data.productTitle.toString(),
+    imageUrl: data.imageUrl.toString(),
+  }]);
+  _cnx.push(['gtin', data.gtin.toString()]);
+} else if (pageType === 'cart') {
+  _cnx.push(['cart', data.cart]);
+  _cnx.push(['cartTotal', data.cartTotal.toString()]);
+}
+
+if (data.surveyType === 'pos') {
+  _cnx.push(['orderId', data.orderId.toString()]);
+}
 
 setInWindow('_cnx', _cnx, true);
 
