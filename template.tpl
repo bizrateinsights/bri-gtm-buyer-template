@@ -256,6 +256,7 @@ _cnx.push(['segment', data.segment.toString()]);
 _cnx.push(['cart', data.cart]); 
 _cnx.push(['customValue1', data.customVal1.toString()]);
 _cnx.push(['customValue2', data.customVal2.toString()]); 
+_cnx.push(['origin', 'GTM']); 
 
 setInWindow('_cnx', _cnx, true);
 
