@@ -3,5 +3,7 @@ documentation: "https://bizrateinsights.com/wp-content/uploads/2019/11/Online-Bu
 versions:
   # Latest version
   - sha: 3e1cf9343f06817cceb5ca374aea47c79777807d
-    changeNotes: Template preparation for release.
+    changeNotes: Adding origin push value
   # Older versions
+  - sha: daa235b6db3ded871a7ae37a5d74e24dd3b20fef
+    changeNotes: Template preparation for release.
